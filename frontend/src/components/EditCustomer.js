@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import config from '../config';
+import '../styles/modern.css';
 
 function EditCustomer() {
   const [name, setName] = useState('');
@@ -37,31 +38,51 @@ function EditCustomer() {
   };
 
   return (
-    <div>
-      <h2>Edit Customer</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Name:</label>
-          <input
-            type="text"
-            className="form-control"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Mobile:</label>
-          <input
-            type="text"
-            className="form-control"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Update Customer</button>
-      </form>
+    <div className="modern-container">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="modern-title">Edit Customer</h2>
+        <Link to="/" className="btn btn-modern-primary shine-button">
+          <i className="fas fa-arrow-left me-2"></i>Back to List
+        </Link>
+      </div>
+      <div className="modern-form">
+        <form onSubmit={handleSubmit} className="fade-in">
+          <div className="mb-4">
+            <label className="modern-label">
+              <i className="fas fa-user me-2"></i>Name
+            </label>
+            <input
+              type="text"
+              className="form-control modern-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter customer name"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="modern-label">
+              <i className="fas fa-mobile-alt me-2"></i>Mobile
+            </label>
+            <input
+              type="text"
+              className="form-control modern-input"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              placeholder="Enter mobile number"
+              required
+            />
+          </div>
+          <div className="d-flex justify-content-end gap-2">
+            <Link to="/" className="btn btn-modern-warning shine-button">
+              <i className="fas fa-times me-2"></i>Cancel
+            </Link>
+            <button type="submit" className="btn btn-modern-primary shine-button">
+              <i className="fas fa-save me-2"></i>Update Customer
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
