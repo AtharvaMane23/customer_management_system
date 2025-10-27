@@ -1,0 +1,239 @@
+# Modern Full-Stack Application Template
+# React + Django + Oracle DB Setup Guide
+
+## System Requirements
+
+### Backend Requirements
+- Python 3.8 or higher
+- Django 3.2 LTS
+- Django REST Framework 3.14.0
+- Oracle Client (version 12.2)
+- cx_Oracle 8.3.0
+- django-cors-headers 4.2.0
+- Oracle Database 12.2
+
+### Frontend Requirements
+- Node.js 16.x or higher
+- React 18.x
+- React Router DOM 6.x
+- Axios 1.5.0
+- Bootstrap 5.3.x
+- Font Awesome 6.x (for icons)
+
+### Development Tools
+- Visual Studio Code
+- Oracle SQL Developer
+- Git 2.x
+- Postman (for API testing)
+
+## Network Configuration
+- Backend Server: 0.0.0.0:8000 (for network access)
+- Frontend Development Server: localhost:3000
+- Database Server: <your_oracle_server>:1521
+
+## Project Structure
+```
+modern_fullstack_template/
+├── backend/
+│   ├── core/                      # Django project root
+│   │   ├── __init__.py
+│   │   ├── settings.py           # Django settings
+│   │   ├── urls.py               # Main URL routing
+│   │   ├── asgi.py
+│   │   └── wsgi.py
+│   ├── api/                      # API application
+│   │   ├── migrations/
+│   │   ├── __init__.py
+│   │   ├── models.py            # Database models
+│   │   ├── serializers.py       # DRF serializers
+│   │   ├── views.py            # API views
+│   │   ├── urls.py             # API routing
+│   │   └── tests.py            # Unit tests
+│   ├── manage.py
+│   ├── requirements.txt
+│   └── venv/                    # Python virtual environment
+└── frontend/
+    ├── public/
+    │   ├── index.html
+    │   ├── favicon.ico
+    │   └── manifest.json
+    ├── src/
+    │   ├── components/         # React components
+    │   │   ├── common/        # Shared components
+    │   │   ├── layouts/       # Layout components
+    │   │   └── pages/         # Page components
+    │   ├── services/          # API services
+    │   ├── utils/             # Utility functions
+    │   ├── styles/            # CSS styles
+    │   ├── config.js         # Configuration file
+    │   ├── App.js
+    │   └── index.js
+    ├── package.json
+    └── .env                   # Environment variables
+
+## Key Configuration Files
+
+### Backend (Django)
+
+1. requirements.txt:
+```
+Django==3.2
+djangorestframework==3.14.0
+django-cors-headers==4.2.0
+cx-Oracle==8.3.0
+python-dotenv==1.0.0
+```
+
+2. settings.py key configurations:
+```python
+ALLOWED_HOSTS = ['*']  # Configure appropriately for production
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://10.200.10.160:3000",  # Add your frontend IP
+]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': '<YOUR_DB_NAME>',
+        'USER': '<DB_USER>',
+        'PASSWORD': '<DB_PASSWORD>',
+        'HOST': '<DB_HOST>',
+        'PORT': '1521',
+    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
+```
+
+### Frontend (React)
+
+1. package.json key dependencies:
+```json
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "axios": "^1.5.0",
+    "bootstrap": "^5.3.1",
+    "@fortawesome/fontawesome-free": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0"
+  }
+}
+```
+
+2. .env configuration:
+```
+REACT_APP_API_URL=http://10.200.10.160:8000/api
+REACT_APP_BASE_URL=http://10.200.10.160:3000
+```
+
+## Setup Steps
+
+### Backend Setup
+1. Create virtual environment:
+```bash
+python -m venv backend/venv
+```
+
+2. Activate virtual environment:
+```bash
+# Windows
+backend\venv\Scripts\activate
+# Linux/Mac
+source backend/venv/bin/activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r backend/requirements.txt
+```
+
+4. Create Django project:
+```bash
+django-admin startproject core .
+python manage.py startapp api
+```
+
+5. Run migrations:
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+6. Start backend server:
+```bash
+python manage.py runserver 0.0.0.0:8000
+```
+
+### Frontend Setup
+1. Create React app:
+```bash
+npx create-react-app frontend
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+npm install react-router-dom axios bootstrap @fortawesome/fontawesome-free @fortawesome/react-fontawesome
+```
+
+3. Start frontend server:
+```bash
+npm start
+```
+
+### Database Setup
+1. Install Oracle Client
+2. Configure tnsnames.ora
+3. Create database user and grant permissions
+4. Test connection using SQL Developer
+
+## Security Considerations
+1. Use environment variables for sensitive data
+2. Configure CORS properly for production
+3. Implement proper authentication
+4. Use HTTPS in production
+5. Implement rate limiting
+6. Regular security updates
+
+## Testing
+1. Backend unit tests using Django test framework
+2. Frontend tests using Jest and React Testing Library
+3. API testing using Postman
+4. Load testing using Apache JMeter
+
+## Development Best Practices
+1. Use Git for version control
+2. Implement proper error handling
+3. Add logging
+4. Document API endpoints
+5. Follow coding standards
+6. Regular backups
+7. Implement monitoring
+
+## Deployment Checklist
+1. Configure production settings
+2. Set up proper CORS headers
+3. Configure database connection
+4. Set up static file serving
+5. Configure error logging
+6. Set up monitoring
+7. Configure backups
+
+## Common Issues and Solutions
+1. CORS issues: Check CORS_ALLOWED_ORIGINS
+2. Database connection: Verify TNS configuration
+3. Port conflicts: Change ports if needed
+4. Network access: Check firewall settings
+5. Dependencies: Check version compatibility
+
+Remember to replace placeholder values with actual configuration details for your specific environment.
