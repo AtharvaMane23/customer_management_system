@@ -1,0 +1,82 @@
+# Modern Full-Stack Application Setup Prompt
+
+Use this prompt when asking AI assistants to help create a new full-stack application similar to the customer management system:
+
+---
+
+"I need to create a modern full-stack application with the following specifications:
+
+1. Backend:
+   - Django 3.2 with Django REST Framework
+   - Oracle Database 12.2 integration
+   - Cross-network accessibility (0.0.0.0:8000)
+   - Proper session handling and concurrency support
+   - CORS configuration for frontend access
+
+2. Frontend:
+   - React 18.x with modern component architecture
+   - Bootstrap 5.3 for responsive design
+   - Axios for API communication
+   - Font Awesome for icons
+   - Environment-based configuration
+
+3. Database:
+   - Oracle 12.2 database connection
+   - Proper transaction management
+   - Session handling
+   - Optimistic locking support
+
+4. Development Environment:
+   - VS Code setup
+   - Python virtual environment
+   - Node.js configuration
+   - Git version control
+
+5. Network Configuration:
+   - Backend accessible on network (0.0.0.0:8000)
+   - Frontend development server on port 3000
+   - CORS properly configured for cross-origin requests
+
+Please help me set up this infrastructure with:
+- Proper project structure
+- Required configuration files
+- Database connection setup
+- Network accessibility configuration
+- Basic CRUD template
+- Error handling
+- Session management
+- Testing framework
+
+The setup should follow best practices for scalability and maintainability, with proper separation of concerns and modular architecture."
+
+---
+
+Additional Instructions for the Prompt:
+
+1. When using this prompt:
+   - Replace version numbers if newer versions are available
+   - Adjust port numbers if different ones are needed
+   - Modify database version according to your Oracle installation
+
+2. You may want to add specific requirements for:
+   - Authentication methods
+   - Specific UI component libraries
+   - Additional development tools
+   - Deployment platforms
+   - Monitoring solutions
+
+3. Consider specifying:
+   - Code style guidelines
+   - Documentation requirements
+   - CI/CD preferences
+   - Specific security requirements
+   - Performance benchmarks
+
+4. You can also request:
+   - Specific testing frameworks
+   - Code coverage requirements
+   - Specific architectural patterns
+   - State management solutions
+   - API documentation format
+
+This prompt is designed to get you started with a robust foundation that can be customized based on specific project needs.
